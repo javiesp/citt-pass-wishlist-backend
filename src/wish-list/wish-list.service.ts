@@ -10,8 +10,20 @@ export class WishListService {
   constructor(@InjectModel(WishList.name) private readonly wishListModel: Model<WishList>) {}
 
   async createWishList(createWishListDto: CreateWishListDto): Promise<WishList> {
-    const createdWishList = new this.wishListModel(createWishListDto).save();
-    console.log(createWishListDto)
+    const products = createWishListDto.product.map(p => ({
+      product_id: p.product_id,
+      product_name: p.product_name,
+      price: p.price,
+      quantity: p.quantity,
+    }));
+
+    const createdWishList = new this.wishListModel({
+      wishlist_id: createWishListDto.wishlist_id,
+      wishlist_name: createWishListDto.wishlist_name,
+      budget: createWishListDto.budget,
+      product: products,
+    }).save();
+
     return createdWishList;
   }
 

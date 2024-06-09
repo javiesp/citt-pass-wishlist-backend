@@ -12,6 +12,7 @@ export class WishListController {
   @Post('create-wishList-type')
   @MessagePattern("createWishList")// se comunica con la api por medio de message pattern
   create(@Body() createWishListDto: CreateWishListDto) {
+    console.log('asi se recibe', createWishListDto)
     return this.wishListService.createWishList(createWishListDto);
   }
 

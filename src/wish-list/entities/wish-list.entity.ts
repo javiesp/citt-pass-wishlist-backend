@@ -6,7 +6,6 @@ export type WishListDocument = HydratedDocument<WishList>;
 
 @Schema()
 export class WishList {
-
     @Prop()
     id: number;
 
@@ -19,7 +18,7 @@ export class WishList {
     @Prop()
     budget: number;
 
-    @Prop({ type: [{ product_id: Number, cant: Number }], default: [] })
+    @Prop([{ product_id: Number, product_name: String, price: Number, quantity: Number }])
     product: Product[];
 }
 
